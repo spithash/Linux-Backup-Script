@@ -2,10 +2,10 @@
 
 ###### Configuration ######
 
-# Enter the backup location - Where should we save our files?
+# Enter the backup location - Where should we save our files? (You should change this)
 backuplocation="/home/user/fullsysbackup"
 
-# Enter full paths of folders to include in our backup archive.
+# Enter full paths of folders to include in our backup archive. (You should change these)
 backuppaths=(
   /home/user 
   /root 
@@ -18,10 +18,10 @@ backuppaths=(
 ###### End Of Configuration ######
 
 # sudo is required
-if [[ $UID != 0 ]]; then
-  printf "Permission Denied: run this script with sudo privileges. You will also be promped to enter mysql credentials unless you have a .my.cnf file in place. See README.md\n"
-    printf "sudo $0 $*"
-    exit 1
+printf "\e[1mThis script needs sudo privileges. You will also be promped to enter mysql credentials for each database you export unless you have a .my.cnf file in place. See README.md\e[0m\n"
+if [ $EUID != 0 ]; then
+    sudo "$0" "$@"
+    exit $?
 fi
 
 printf "%b" "\e[1mChecking for required package: pv\e[0m\n"
