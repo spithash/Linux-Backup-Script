@@ -18,6 +18,9 @@ password=mysqlpass
 ```
 For safety, make this file readable to you only by running chmod 0600 ~/.my.cnf 
 
+# Usage
+Just run it with: **sudo bash fullsysbackup.sh**
+
 # TODO: 
 * Make it work with dialog for a fancy progress bar.
 * Maybe use rsync to copy files to a remote machine?
