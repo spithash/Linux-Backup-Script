@@ -19,7 +19,7 @@ backuppaths=(
 
 # sudo is required
 if [[ $UID != 0 ]]; then
-    echo "Permission Denied: run this script with sudo privileges. You will also be promped to enter mysql credentials."
+  echo "Permission Denied: run this script with sudo privileges. You will also be promped to enter mysql credentials unless you have a .my.cnf file in place. See README.md"
     echo "sudo $0 $*"
     exit 1
 fi

@@ -15,10 +15,8 @@ Create file ~/.my.cnf and add following lines in it and replace mysqluser & mysq
 [client]
 user=mysqluser
 password=mysqlpass
-
 ```
 For safety, make this file readable to you only by running chmod 0600 ~/.my.cnf 
-
 
 # TODO: 
 * Make it work with dialog for a fancy progress bar.
