@@ -1,14 +1,14 @@
 # Linux Backup Script (Bash)
 Take backups of your mysql/mariadb databases and your files/folders. This can be useful for server backups or migrations.
 I personaly use it to backup all of /etc/ and maybe home user directories including websites and databases that I maintain.
-Makes my life easier not having to go through all the progress again and again. I just change the folder paths to the ones I need and I'm ready to go.
+<br>Makes my life easier not having to go through all the progress again and again. I just change the folder paths to the ones I need and I'm ready to go.
 The script will use gzip to create .gz archives of your files.
 
 # Requirements
 Packages **pv & gzip** are required to be installed on your system because they're needed for the progress bar and archive creation of your files and .sql databases.
 Use your favourite package manager and install them.
 On Debian this should do: **sudo apt install pv gzip**
-Also, **sudo** is required. We need it so we can backup system files.
+<br>Also, **sudo** is required. We need it so we can backup system files.
 
 # MySQL/MariaDB
 The script will ask for mysql user and password confirmation each time you dump a database.
