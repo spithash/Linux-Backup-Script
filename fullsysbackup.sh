@@ -3,11 +3,11 @@
 ###### Configuration ######
 
 # Enter the backup location - Where should we save our files?
-backuplocation="/home/spithash/fullsysbackup"
+backuplocation="/home/user/fullsysbackup"
 
 # Enter full paths of folders to include in our backup archive.
 backuppaths=(
-  /home/spithash 
+  /home/user 
   /root 
   /etc 
   /usr/share/coreruleset 
