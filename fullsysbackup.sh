@@ -3,11 +3,11 @@
 ###### Configuration ######
 
 # Enter the backup location - Where should we save our files?
-backuplocation="/home/user/fullsysbackup"
+backuplocation="/home/spithash/fullsysbackup"
 
 # Enter full paths of folders to include in our backup archive.
 backuppaths=(
-  /home/user 
+  /home/spithash 
   /root 
   /etc 
   /usr/share/coreruleset 
@@ -19,67 +19,56 @@ backuppaths=(
 
 # sudo is required
 if [[ $UID != 0 ]]; then
-  echo "Permission Denied: run this script with sudo privileges. You will also be promped to enter mysql credentials unless you have a .my.cnf file in place. See README.md"
-    echo "sudo $0 $*"
+  printf "Permission Denied: run this script with sudo privileges. You will also be promped to enter mysql credentials unless you have a .my.cnf file in place. See README.md\n"
+    printf "sudo $0 $*"
     exit 1
 fi
 
-# Let's wait for CTRL+C signals
-trap ctrl_c INT
-function ctrl_c() {
-        echo -e "\e[31m*** Stopping the script, CTRL-C pressed.\e[0m"
-}
-
-echo ""
-echo -e "\e[1mChecking for required package: pv\e[0m"
+printf "%b" "\e[1mChecking for required package: pv\e[0m\n"
 sleep 1
 FILE=/usr/bin/pv
 if [ -f "$FILE" ]; then
-    echo -e "\e[1m$FILE exists.\e[0m"
+    printf "%b" "\e[1m$FILE exists.\e[0m\n"
 else 
-    echo -e "\e[31m$FILE does not exist. You may install it with "sudo apt install pv" or your distros package manager. - Script will now exit.\e[0m" && exit 0
+    printf "%b" "\e[31m$FILE does not exist. You may install it with "sudo apt install pv" or your distros package manager. - Script will now exit.\e[0m\n" && exit 0
 fi
 
 FILE1=/bin/gzip
 if [ -f "$FILE1" ]; then
-    echo -e "\e[1m$FILE1 exists.\e[0m"
+    printf "%b" "\e[1m$FILE1 exists.\e[0m\n"
 else 
-    echo -e "\e[31m$FILE1 does not exist. You may install it with "sudo apt install gzip" or your distros package manager. - Script will now exit.\e[0m" && exit 0
+    printf "%b" "\e[31m$FILE1 does not exist. You may install it with "sudo apt install gzip" or your distros package manager. - Script will now exit.\e[0m\n" && exit 0
 fi
 
-echo ""
-echo -e "\e[1mBacking up to: $backuplocation\e[0m"
+printf "%b" "\e[1mBacking up to: $backuplocation\e[0m\n"
 today=$(date +"%Y-%m-%d-%I-%M-%p")
 sleep 1
 mkdir -p $backuplocation
-echo ""
-echo -e "\e[1mDumping Databases... Your mysql root password is required\e[0m"
-echo ""
+
+printf "%b" "\e[1mDumping Databases... Your mysql root password is required\e[0m\n"
 
 mysql -N -e 'show databases' -u root -p |grep -v 'mysql\|information\|performance'|
-while read dbname;
+while read -r dbname;
 do 
-  if mysqldump --verbose --complete-insert --routines --triggers --single-transaction -u root -p "$dbname" > $backuplocation/"$dbname"-${today}.sql; [[ $? -eq 0 ]] && gzip --force $backuplocation/"$dbname-${today}".sql; then
-  echo -e "\e[31mDumping Database: \e[1m $dbname \e[32mdone.\e[0m" 
+  if mysqldump --verbose --complete-insert --routines --triggers --single-transaction -u root -p "$dbname" > $backuplocation/"$dbname"-"${today}".sql; [[ $? -eq 0 ]] && gzip --force $backuplocation/"$dbname-${today}".sql; then
+  printf "%b" "\e[31mDumping Database: \e[1m $dbname \e[32mdone.\e[0m\n" 
 else
-  echo -e "\e[31mCould not dump \e[1m $dbname \e[31mdatabase\e[0m" && exit 0
+  printf "%b" "\e[31mCould not dump \e[1m $dbname \e[31mdatabase\e[0m\n" && exit 0
 fi
 done
 
 sleep 1
-echo ""
-  echo -e "\e[1mBacking up system and user files...\e[0m"
+  printf "%b" "\e[1mBacking up system and user files...\e[0m\n"
 
 # TODO: dialog output
 #if (tar -cf - "${backuppaths[@]}" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 | awk '{print $1}') | gzip --force > archive.tar.gz) 2>&1 | dialog --gauge "Backing up your files..." 7 70; then
 #
 
 if tar -cf - "${backuppaths[@]}" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 | awk '{print $1}') | gzip --force > $backuplocation/backup-files-$today.tar.gz ; then
-    echo -e "\e[31mSystem and user files backup: \e[32mdone.\e[0m"
+    printf "%b" "\e[31mSystem and user files backup: \e[32mdone.\e[0m\n"
   else
-    echo -e "\e[31mError: Could not backup files.\e[0m" && exit 0  
+    printf "%b" "\e[31mError: Could not backup files.\e[0m\n" && exit 0  
 fi
 
-echo ""
-echo -e "\e[32mDone!\e[0m"
+printf "%b" "\e[32mDone!\e[0m"
 exit 0
