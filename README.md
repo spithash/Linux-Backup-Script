@@ -11,6 +11,7 @@ On Debian this should do: **sudo apt install pv gzip**
 
 # MySQL/MariaDB
 The script will ask for mysql user and password confirmation each time you dump a database.
+If this bothers you, then you should create a .my.cnf file. 
 ## .my.cnf – mysql user & password
 Create file ~/.my.cnf and add following lines in it and replace mysqluser & mysqlpass values.
 ```
