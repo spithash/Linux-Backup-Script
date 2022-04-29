@@ -3,7 +3,7 @@
 ###### Configuration ######
 
 # Enter the backup location - Where should we save our files? (You should change this)
-backuplocation="/home/user/fullsysbackup"
+backuplocation="/home/user/fullsysbackup/"
 
 # Enter full paths of folders to include in our backup archive. (You should change these)
 backuppaths=(
@@ -64,7 +64,7 @@ sleep 1
 #if (tar -cf - "${backuppaths[@]}" --exclude="$backuplocation" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 | awk '{print $1}') | gzip --force > archive.tar.gz) 2>&1 | dialog --gauge "Backing up your files..." 7 70; then
 #
 
-if tar -cf - "${backuppaths[@]}" --exclude="$backuplocation" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 | awk '{print $1}') | gzip --force > $backuplocation/backup-files-"$today".tar.gz ; then
+if tar -cf - --exclude="$backuplocation*" "${backuppaths[@]}" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 | awk '{print $1}') | gzip --force > $backuplocation/backup-files-"$today".tar.gz ; then
     printf "%b" "\e[31mSystem and user files backup: \e[32mdone.\e[0m\n"
   else
     printf "%b" "\e[31mError: Could not backup files.\e[0m\n" && exit 0  
