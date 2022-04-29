@@ -1,5 +1,7 @@
-# Linux-Backup-Script
+# Linux Backup Script (Bash)
 Take backups of your mysql/mariadb databases and your files/folders. This can be useful for server backups or migrations.
+I personaly use it to backup all of /etc/ and maybe home user directories including websites and databases that I maintain.
+Makes my life easier not having to go through all the progress again and again. I just change the folder paths to the ones I need and I'm ready to go.
 
 # Requirements
 Package **pv** is required to be installed on your system because it's needed for the progress bar when creating the file archives.
