@@ -37,7 +37,14 @@ FILE=/usr/bin/pv
 if [ -f "$FILE" ]; then
     echo -e "\e[1m$FILE exists.\e[0m"
 else 
-    echo -e "\e[31m$FILE does not exist. You may install it with "sudo apt install pv" - Script will now exit.\e[0m" && exit 0
+    echo -e "\e[31m$FILE does not exist. You may install it with "sudo apt install pv" or your distros package manager. - Script will now exit.\e[0m" && exit 0
+fi
+
+FILE1=/bin/gzip
+if [ -f "$FILE1" ]; then
+    echo -e "\e[1m$FILE1 exists.\e[0m"
+else 
+    echo -e "\e[31m$FILE1 does not exist. You may install it with "sudo apt install gzip" or your distros package manager. - Script will now exit.\e[0m" && exit 0
 fi
 
 echo ""
