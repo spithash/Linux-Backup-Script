@@ -75,7 +75,5 @@ if tar -cf - "${backuppaths[@]}" | pv -s $(du -cb "${backuppaths[@]}" | tail -1 
 fi
 
 echo ""
-
 echo -e "\e[32mDone!\e[0m"
-
 exit 0
