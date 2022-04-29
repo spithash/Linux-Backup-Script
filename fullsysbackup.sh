@@ -2,7 +2,7 @@
 
 ###### Configuration ######
 
-# Enter the backup location - Where should we save our files? (You should change this)
+# Enter the backup location - Where should we save our files? (You should change this. Don't forget the trailing slash. / <----)
 backuplocation="/home/user/fullsysbackup/"
 
 # Enter full paths of folders to include in our backup archive. (You should change these)
