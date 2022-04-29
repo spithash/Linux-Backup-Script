@@ -18,7 +18,7 @@ backuppaths=(
 ###### End Of Configuration ######
 
 # sudo is required
-printf "\e[1mThis script needs sudo privileges. You will also be promped to enter mysql credentials for each database you export unless you have a .my.cnf file in place. See README.md\e[0m\n"
+printf "\e[1mThis script needs sudo privileges. You will also be promped to enter mysql credentials for each database you export unless you have a .my.cnf file in place. See README.md file for more information.\e[0m\n"
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
     exit $?
