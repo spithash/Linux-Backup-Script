@@ -5,7 +5,7 @@ Makes my life easier not having to go through all the progress again and again. 
 The script will use gzip to create .gz archives of your files.
 
 # Requirements
-Packages **pvi & gzip** are required to be installed on your system because they're needed for the progress bar and archive creation of your files and .sql databases.
+Packages **pv & gzip** are required to be installed on your system because they're needed for the progress bar and archive creation of your files and .sql databases.
 Use your favourite package manager and install them.
 On Debian this should do: **sudo apt install pv gzip**
 
