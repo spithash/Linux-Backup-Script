@@ -5,7 +5,7 @@
 # Enter the backup location - Where should we save our files?
 backuplocation="/home/user/fullsysbackup"
 
-# Enter full paths of folders to include in our backup
+# Enter full paths of folders to include in our backup archive.
 backuppaths=(
   /home/user 
   /root 
@@ -26,7 +26,6 @@ fi
 
 # Let's wait for CTRL+C signals
 trap ctrl_c INT
-
 function ctrl_c() {
         echo -e "\e[31m*** Stopping the script, CTRL-C pressed.\e[0m"
 }
