@@ -2,10 +2,12 @@
 Take backups of your mysql/mariadb databases and your files/folders. This can be useful for server backups or migrations.
 I personaly use it to backup all of /etc/ and maybe home user directories including websites and databases that I maintain.
 Makes my life easier not having to go through all the progress again and again. I just change the folder paths to the ones I need and I'm ready to go.
+The script will use gzip to create .gz archives of your files.
 
 # Requirements
-Package **pv** is required to be installed on your system because it's needed for the progress bar when creating the file archives.
-Use your favourite package manager and install it. on Debian: **sudo apt install pv**
+Packages **pvi & gzip** are required to be installed on your system because they're needed for the progress bar and archive creation of your files and .sql databases.
+Use your favourite package manager and install them.
+On Debian this should do: **sudo apt install pv gzip**
 
 # MySQL/MariaDB
 The script will ask for mysql user and password confirmation each time you dump a database.
