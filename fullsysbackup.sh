@@ -26,12 +26,16 @@ fi
 
 printf "%b" "\e[1mChecking for required package: pv\e[0m\n"
 sleep 1
+
 FILE=/usr/bin/pv
 if [ -f "$FILE" ]; then
     printf "%b" "\e[1m$FILE exists.\e[0m\n"
 else 
     printf "%b" "\e[31m$FILE does not exist. You may install it with "sudo apt install pv" or your distros package manager. - Script will now exit.\e[0m\n" && exit 0
 fi
+
+printf "%b" "\e[1mChecking for required package: gzip\e[0m\n"
+sleep 1
 
 FILE1=/bin/gzip
 if [ -f "$FILE1" ]; then
